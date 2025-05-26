@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" onclick="avoid()"><!--defined the onclick="avoid()" here to access the game by allowing the character to jump and detect when it lost-->
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body><!--divs for the components of the game to access them in css to add some deigns-->
+    <div id="loadingpage">Superman Game</div>
+    <div id="main"></div>
+      <div id="character">
+        <img src="avatar.png" width="75" height="85">
+      </div>
+      <div id="obstacles"><img src="obstacles.png" width="55" height="55"></div>
+  <h4>Spacebar or Left click mouse to jump</h4>
+<script>
+  
+  window.onload =() => {//this loads the code only after the wepage has been fully loaded to avoid the obstacle from going too early and causing the character to lose.
+    const loadingpage= document.getElementById ("loadingpage");//accessing the loading page to show the tilte of the game before it starts.
+loadingpage.classList.add ("fade-out");//calls css element of loadingpage to execute properly.
+    setTimeout (() => {
+      loadingpage.style.display="none";
+    }, 900);//removes loadingpage in 900ms right before starting the game to avoid interruption of the game.
+  };
+  
+const character= document.getElementById("character"); //access character in css to apply the jump function through clicking the mouse. const instead of variable because the reference doesnt change, it stays as character and obstacle the whole time.
+const obstacle =document.getElementById("obstacles");//same explanation above.
+let gamedone = false; //gamedone is not yet done, hence given the false boolean, later on when the character loses we will change it to true.
+  
+function avoid(){
+  if(!character.classList.contains ("animate")){//checks if the character has not yet made a jump.
+    character.classList.add ("animate");//this will add/execute the css animation "animate" if character has not yet jumped.
+}
+  setTimeout(() =>{ character.classList.remove("animate"); },500);}//removes the "animate" css element within 500ms after the jump.
+
+window.addEventListener("keydown", function(event){//listens to the whole page if any key is pressed
+  if (event.code === "Space" && !gamedone) {//checks if spacebar is pressed -"Space" ...
+    avoid();//...and decides whether the game is still playing...
+  }
+  if (event.code === "Space" && gamedone) {//...or the game is done to be able to...
+    location.reload();//...this reloads the whole game without the need to reload the whole page manually.
+  }
+});
+
+var lose = setInterval(function(){//runs in 10ms(check line 55) intervals to check if an overlapping has happened
+  var characterTop = parseInt(window.getComputedStyle//parseInt converts 190px to number 160
+                              (character).getPropertyValue("top"));//checks the top of the character if it collided with the obstacle.
+  var obstaclesleft = parseInt(window.getComputedStyle (obstacles).getPropertyValue("left"));//same logic as above but this checks the horizontal position (left) instead of vertical(top).
+  if(obstaclesleft<20 && obstaclesleft>0 &&characterTop >= 160 ){//this checks if the two collided through numbers.
+    obstacles.style.animation = "none";//if they collided, it stops the objects from moving
+    gamedone = true;//this is where the line 28 comes.
+    alert("Superman lost. Press spacebar twice to play again.")//alerts the player that superman lost and instructs them what to do through a message
+    clearInterval(lose);//stops the game from running further.
+  }       
+}, 10);
+  </script>
+  <style>
+    
+
+#main{/*this is responsible for the container of the game*/
+  width:500px;
+  height:250px;
+  border: 2px solid blue;/*color of the border of the box for  a much clearer representation.*/
+}
+#loadingpage{/*loading page that includes the whole page and font size and style.*/
+  position:fixed;
+  width: 100%;
+  height:100%;
+  background:grey;
+  color: red;
+  display:flex;
+  align-itmes:center;
+  justify-content: center;
+  font-size: 30px;
+  
+}
+
+#loadingpage.fade-out{/*animation of the loading page. */
+  opacity:0;
+  transition: opacity 2s ease;
+  pointer-events:none;/*disabled from listening to mousclicks since this will be called while playing the game; using either mouseclicks or spacebar (although spacebar is irrelevant here).*/
+}
+
+#character{
+  width:20px;
+  height:50px;
+  position:absolute;/*positions the nearest element placed first and not at the top.*/
+  top: 180px;/*moves 180 pixels down from the top of the border*/
+  
+}
+.animate{
+  animation: avoid 500ms infinite;}/*applies the avoid function when called*/
+
+#obstacles{/*same explanation from the character class...*/
+  width: 20px;
+  height: 20px;
+  position:absolute;
+  top:210px;
+  left: 470px;/*..this is just pushed to the right*/
+  animation: slide 1.5s linear infinite;/*and this applies the slide animation with 1.5s of duration non-stop.*/
+}
+
+@keyframes slide{/*obstacle animation*/
+  0%{left:470px;}
+  100%{left:0;}
+
+}
+
+@keyframes avoid{/*jump animation*/
+  0%{top: 180px;}
+  10%{top: 130px;}
+  70%{top:130px;}
+  100%{top: 180px;}
+}
+
+  </style>
+  </body>
+</html>

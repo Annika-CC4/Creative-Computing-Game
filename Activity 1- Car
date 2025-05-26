@@ -1,0 +1,36 @@
+function setup() {
+  createCanvas(300, 200);
+}
+
+function draw() {
+  ellipse(150,75,85,80);
+  ellipse(150,75,75,70);
+  line(150,40,150,120);/*line 6-8 is the toppart of the car*/
+  push();
+  fill(192,192,192);
+  rect(78,119,20,10);
+  rect(90,80,120,55,10);/*line 10-12 are the doors*/
+  pop();
+  
+  push();//isolated the wheels(4 ellipse) to add animation of moving wheels
+  fill(90);
+  ellipse(120,135,35,35);
+  ellipse(180,135,35,35);
+  push();//isolated the 2 small ellipse to add color
+  fill(0);
+  ellipse(120,135,5,15);
+  ellipse(180,135,5,15);
+  ellipse(120,135,15,5);
+  ellipse(180,135,15,5);/*16-24 wheels*/
+  pop();
+  pop();
+  
+  rect(115, 90, 10,2);
+  rect(153,90,10,2);
+  push();
+  fill(255, 255, 0);
+  rect(192,83,15,18,5,15,5,5);
+  pop();/*the doors*/
+  
+  
+}

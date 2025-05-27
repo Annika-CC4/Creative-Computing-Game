@@ -1,0 +1,21 @@
+function setup(){
+  createCanvas(500,500);
+  noStroke();
+  let cols=10;
+  let rows= 20;
+  let w= width/cols;
+  let h= height/rows;
+  
+  for(let i=0; i< cols; i++){//first/mother for loop for rows*//
+    for(let j= 0; j <rows; j++){//*second for loop for columns*//
+      stroke(0);
+      fill(10,0); //10 is the color while 0 is the transparancy
+      circle(i*w,j*h,w,h);
+      rect(i*w,j*h,w,h);
+      push();
+      fill(100);
+      circle(i*w,j*h,10);
+      pop();
+    }
+  }
+}

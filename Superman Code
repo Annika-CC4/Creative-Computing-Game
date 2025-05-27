@@ -64,8 +64,8 @@ var lose = setInterval(function(){//runs in 10ms(check line 55) intervals to che
 }
 #loadingpage{/*loading page that includes the whole page and font size and style.*/
   position:fixed;
-  width: 100%;
-  height:100%;
+  width: 500px;
+  height:250px;
   background:grey;
   color: red;
   display:flex;

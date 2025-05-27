@@ -1,0 +1,28 @@
+var word="Hola Miga!"//declare a variable for  container of word.
+var word2="Soy Dora"
+
+var fontA;
+var fontB;//container of font.
+function preload(){//preLoad the fonts to use
+  fontA=loadFont("Super Fashion.ttf");
+  fontB=loadFont("Starbim.ttf");  
+}
+
+function setup() {
+  createCanvas(600, 500);
+  background(0);
+  textAlign (CENTER);
+  //push-pop the fonts to separate them and be able to use 2 fonts together.
+  push();
+  fill(255,192,203);
+  textFont(fontA, 100);
+  text(word, 200,100,100);
+  pop();
+  
+  push();
+  fill (800080);
+  textFont(fontB, 100)
+  text(word2,200, 350, 100);
+  pop();
+
+}

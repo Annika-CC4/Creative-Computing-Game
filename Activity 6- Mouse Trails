@@ -1,0 +1,11 @@
+var value= 0;
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  strokeWeight(2);
+  stroke(mouseX, 0, mouseY);//mouseX controls color red: if mouse is moved along the x-axis, more red. mouse is the y-axis which controls blue color.
+  ellipse(mouseX,mouseY, 50,50);//mouseX and Y here is responsible for drawing an ellipse where the mouse is placed.
+  
+}

@@ -1,0 +1,16 @@
+var x = 0;
+var easing = 0.07;
+
+function setup() {  createCanvas(500, 300);  background(0);  
+ noStroke();
+}
+
+function draw() {
+  if(mouseIsPressed)//to change color/ behavior or eclipse when pressed.
+  background(random (255), random(255), random(255));//3 random(255) because the usual input of colors or the rgb are 3 arguments, R,G and B. In order to get random colors, I declared the 3 color placeholder. 
+  fill(255);
+var targetX = mouseX; x += (targetX - x) * easing;  
+  ellipse(x, height/2, 40, 40);
+  stroke(random (255), random(255), random(255))//for a more playful ellipse; with the added pop of color everytime it moves.
+}
+

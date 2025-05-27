@@ -1,0 +1,24 @@
+function setup() {
+  createCanvas(400, 400);
+}
+
+function draw() {
+  background(00);
+  push();
+  fill(0, 255, 0);
+  ellipse(200,210,200,190);
+  push();
+  fill(00);
+  ellipse(200, 230, 100, 100);
+  pop();
+  ellipse(200,150,250,190);
+  pop();
+  
+  push();
+  fill(000);
+  circle(150,120, 80);
+  ellipse(150,130,75,90);
+  circle(250,120, 80);
+  ellipse(250,130,75,90);
+  pop();  
+}
